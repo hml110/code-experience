@@ -81,13 +81,29 @@ const download = () => {
   border: 1px solid red;
 
   .c_img {
+    min-height: 300px;
     border: 1px solid red;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    div:nth-child(1){
+      min-height: 300px;
+      border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    div:nth-child(2){
+      min-height: 300px;
+      border: 1px solid #1ef10b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .btn_box {
+    height: 150px;
     border: 1px solid red;
     display: flex;
     justify-content: space-around;
