@@ -1,15 +1,17 @@
 <template>
-  <div class="container">
-    <a-row class="l_box">
-      <a-col class="c_img" :span="24"> <a-image :width="200" src="src/assets/bejson.jpg" /></a-col>
-      <a-col class="btn_box" :span="24"> <a-button type="primary" :loading="loading" @click="getImgText">解
-          析</a-button></a-col>
-      <a-col :span="24"> <a-button type="primary" :loading="loading" @click="download">下 载</a-button></a-col>
-      <a-col :span="24">
-        <pre class="c_value" v-loading="loading">{{ word }}</pre>
+    <a-row class="container">
+      <a-col class="c_img" :span="24">
+        <div> <a-image :width="200" src="src/assets/bejson.jpg" /></div>
+        <div>
+          <pre class="c_value" v-loading="loading">{{ word }}</pre>
+        </div>
+      </a-col>
+      <a-col class="btn_box" :span="24">
+        <a-button type="primary" :loading="loading" @click="getImgText">解
+          析</a-button>
+        <a-button type="primary" :loading="loading" @click="download">下 载</a-button>
       </a-col>
     </a-row>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -18,7 +20,7 @@ import { createWorker } from 'tesseract.js';
 import { message } from 'ant-design-vue';
 const [messageApi] = message.useMessage();
 
-let word = ref('')
+let word = ref('22222222222222222222')
 let loading = ref(false)
 let worker = ref(null)
 let pdf = ref(null)
@@ -68,20 +70,29 @@ const download = () => {
 
 </script>
 
-<style scoped>
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f2f5;
-}
-
-.login-form {
-  width: 300px;
+<style scoped lang="less">
+.container {
+  width: 100%;
+  height: 100%;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border: 1px solid red;
+
+  .c_img {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_box {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
 }
 </style>
