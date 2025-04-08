@@ -1,11 +1,13 @@
 <template>
-  <div class="login-container">
-
-
-    <a-row>
-      <a-col :span="24"> <a-image :width="200" src="src/assets/bejson.jpg" /></a-col>
-      <a-col :span="24"> <a-button type="primary" :loading="loading" @click="getImgText">解 析</a-button></a-col>
+  <div class="container">
+    <a-row class="l_box">
+      <a-col class="c_img" :span="24"> <a-image :width="200" src="src/assets/bejson.jpg" /></a-col>
+      <a-col class="btn_box" :span="24"> <a-button type="primary" :loading="loading" @click="getImgText">解
+          析</a-button></a-col>
       <a-col :span="24"> <a-button type="primary" :loading="loading" @click="download">下 载</a-button></a-col>
+      <a-col :span="24">
+        <pre class="c_value" v-loading="loading">{{ word }}</pre>
+      </a-col>
     </a-row>
   </div>
 </template>
@@ -13,6 +15,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { createWorker } from 'tesseract.js';
+import { message } from 'ant-design-vue';
+const [messageApi] = message.useMessage();
 
 let word = ref('')
 let loading = ref(false)
@@ -46,10 +50,7 @@ const getImgText = async () => {
     loading.value = false
   } catch (error) {
     loading.value = false
-    ElMessage({
-      message: '解析失败',
-      type: 'warning',
-    })
+    messageApi.error('解析失败！');
   }
 }
 
