@@ -20,7 +20,7 @@ import { createWorker } from 'tesseract.js';
 import { message } from 'ant-design-vue';
 const [messageApi] = message.useMessage();
 
-let word = ref('22222222222222222222')
+let word = ref('')
 let loading = ref(false)
 let worker = ref(null)
 let pdf = ref(null)
@@ -44,9 +44,11 @@ const init = async () => {
 
 // 获取图片链接文本
 const getImgText = async () => {
+  messageApi.info('解析失败！');
   loading.value = true
   try {
     const { data } = await worker.value.recognize(url.value, { pdfTitle: 'Example PDF' }, { pdf: true });
+    console.log(worker.value);
     pdf.value = data.pdf
     word.value = data.text
     loading.value = false
@@ -58,6 +60,7 @@ const getImgText = async () => {
 
 // 下载PDF
 const download = () => {
+  messageApi.error('解析失败！');
   const blob = new Blob([new Uint8Array(pdf.value)], { type: 'application/pdf' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
