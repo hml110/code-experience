@@ -1,17 +1,17 @@
 <template>
-    <a-row class="container">
-      <a-col class="c_img" :span="24">
-        <div> <a-image :width="200" src="src/assets/bejson.jpg" /></div>
-        <div>
-          <pre class="c_value" v-loading="loading">{{ word }}</pre>
-        </div>
-      </a-col>
-      <a-col class="btn_box" :span="24">
-        <a-button type="primary" :loading="loading" @click="getImgText">解
-          析</a-button>
-        <a-button type="primary" :loading="loading" @click="download">下 载</a-button>
-      </a-col>
-    </a-row>
+  <a-row class="container">
+    <a-col class="c_img" :span="24">
+      <div> <a-image :width="200" :src="url" /></div>
+      <div>
+        <pre class="c_value" v-loading="loading">{{ word }}</pre>
+      </div>
+    </a-col>
+    <a-col class="btn_box" :span="24">
+      <a-button type="primary" :loading="loading" @click="getImgText">解
+        析</a-button>
+      <a-button type="primary" :loading="loading" @click="download">下 载</a-button>
+    </a-col>
+  </a-row>
 </template>
 
 <script setup lang="ts">
@@ -24,6 +24,8 @@ let word = ref('')
 let loading = ref(false)
 let worker = ref(null)
 let pdf = ref(null)
+
+let url = ref('https://tesseract.projectnaptha.com/img/eng_bw.png')
 
 onMounted(() => {
   init()
@@ -44,11 +46,13 @@ const init = async () => {
 
 // 获取图片链接文本
 const getImgText = async () => {
-  messageApi.info('解析失败！');
+  console.log('hello!');
   loading.value = true
+  console.log(worker.value);
+  messageApi.success('解析失败！');
   try {
-    const { data } = await worker.value.recognize(url.value, { pdfTitle: 'Example PDF' }, { pdf: true });
-    console.log(worker.value);
+    const {data} = await worker.value.recognize(url.value, { pdfTitle: 'Example PDF' }, { pdf: true });
+    console.log('data: ',data);
     pdf.value = data.pdf
     word.value = data.text
     loading.value = false
@@ -89,14 +93,16 @@ const download = () => {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    div:nth-child(1){
+
+    div:nth-child(1) {
       min-height: 300px;
       border: 1px solid red;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    div:nth-child(2){
+
+    div:nth-child(2) {
       min-height: 300px;
       border: 1px solid #1ef10b;
       display: flex;

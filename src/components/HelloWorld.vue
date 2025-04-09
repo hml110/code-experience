@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import LoginView from '../views/LoginView.vue';
+import TextOcr from '../views/TextOcr.vue';
 
 defineProps<{ msg: string }>()
 
@@ -40,7 +40,7 @@ const text = ref('https://www.antdv.com/');
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p> -->
 
 
-  <LoginView />
+  <TextOcr />
 
 </template>
 
