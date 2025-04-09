@@ -1,5 +1,6 @@
 <template>
   <a-row class="container">
+    <context-holder />
     <a-col class="c_img" :span="24">
       <div> <a-image :width="200" :src="url" /></div>
       <div>
@@ -14,11 +15,11 @@
   </a-row>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name='TextOcr'>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { createWorker } from 'tesseract.js';
 import { message } from 'ant-design-vue';
-const [messageApi] = message.useMessage();
+const [messageApi,contextHolder] = message.useMessage();
 
 let word = ref('')
 let loading = ref(false)
@@ -39,20 +40,20 @@ onUnmounted(() => {
 const init = async () => {
   // 初始化插件  
   worker.value = await createWorker(['eng', 'chi_sim'], 1, {
-    logger: m => console.log(m),
+    // logger: m => console.log(m),
   });
 }
 
 
 // 获取图片链接文本
 const getImgText = async () => {
-  console.log('hello!');
+  // console.log('hello!');
   loading.value = true
-  console.log(worker.value);
-  messageApi.success('解析失败！');
+  // console.log(worker.value);
+  messageApi.success('解析成功！');
   try {
     const {data} = await worker.value.recognize(url.value, { pdfTitle: 'Example PDF' }, { pdf: true });
-    console.log('data: ',data);
+    // console.log('data: ',data);
     pdf.value = data.pdf
     word.value = data.text
     loading.value = false
@@ -64,7 +65,7 @@ const getImgText = async () => {
 
 // 下载PDF
 const download = () => {
-  messageApi.error('解析失败！');
+  messageApi.success('开始下载！');
   const blob = new Blob([new Uint8Array(pdf.value)], { type: 'application/pdf' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
