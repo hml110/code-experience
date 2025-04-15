@@ -1,34 +1,34 @@
 <script setup lang="ts" name='HelloWorld'>
-import TextOcr from '../views/TextOcr.vue';
-
-import dayjs from 'dayjs';
-defineProps<{ msg: string }>()
-console.log(dayjs());
-console.log(dayjs().second());
-console.log(dayjs().format('YYYY-MM-DD'));
+import DraggabledByNativeApi from './DraggabledByNativeApi.vue'
 
 </script>
 
 <template>
-
-<h1>Hello App!</h1>
-  <p>
-    <strong class="bg-red-900 underline">Current route path:</strong> {{ $route.fullPath }}
-  </p>
-  <nav>
-    <RouterLink to="/">Go to Home </RouterLink>
-    <RouterLink to="/about">Go to About</RouterLink>
-  </nav>
-    <main>
-    <RouterView />
-  </main>
-
-  <!-- <TextOcr /> -->
-
+<a-row class="page">
+    <a-col :span="12" class="page-left">
+      <DraggabledByNativeApi/>
+      <div class="mt-6">
+         <a-tag color="#f50">原生拖拽 API</a-tag>
+      </div>
+    </a-col>
+    <a-col :span="12" class="page-right">col-12</a-col>
+  </a-row>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
+<style scoped lang="less">
+.page{
+  width:500px;
+  height: 100%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  .page-left{
+    width:200px;
+    border-right: 1px solid #ccc;
+  }
+  .page-right{
+    border-left: 1px solid #ccc;
+  }
 }
+
+
 </style>
