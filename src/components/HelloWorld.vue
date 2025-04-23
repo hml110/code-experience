@@ -1,5 +1,6 @@
 <script setup lang="ts" name='HelloWorld'>
 import DraggabledByNativeApi from './DraggabledByNativeApi.vue'
+import DraggabledByCustom from './DraggabledByCustom.vue'
 
 </script>
 
@@ -11,7 +12,12 @@ import DraggabledByNativeApi from './DraggabledByNativeApi.vue'
          <a-tag color="#f50">原生拖拽 API</a-tag>
       </div>
     </a-col>
-    <a-col :span="12" class="page-right">col-12</a-col>
+    <a-col :span="12" class="page-right">
+      <DraggabledByCustom/>
+      <div class="mt-6">
+         <a-tag color="#f50">自定义拖拽</a-tag>
+      </div>
+    </a-col>
   </a-row>
 </template>
 
