@@ -1,6 +1,6 @@
 <script setup lang="ts" name='HelloWorld'>
-import DraggabledByNativeApi from '../views/components/drag/DraggabledByNativeApi.vue'
-import DraggabledByCustom from '../views/components/drag/DraggabledByCustom.vue'
+import DraggabledByNativeApi from './components/DraggabledByNativeApi.vue'
+import DraggabledByCustom from './components/DraggabledByCustom.vue'
 
 </script>
 

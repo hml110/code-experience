@@ -4,14 +4,14 @@ import { useRouter } from 'vue-router';
 let  router = useRouter();
 
 
-const goToAbout = ()=>{
-    router.push('/adout')
+const goToHome = ()=>{
+    router.push('/')
 }
 
 
 </script>
 
 <template>
-  <h2>HomeView</h2>
-  <button @click="goToAbout">Go to About</button>
+  <h2>这是关于页面</h2>
+  <button @click="goToHome">Go to Home</button>
 </template>
